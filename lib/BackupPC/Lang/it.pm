@@ -1,6 +1,6 @@
 #!/bin/perl
 #
-# $Id: it.pm,v 1.5 2004/03/29 19:05:24 cbarratt Exp $
+# $Id: it.pm,v 1.6 2004/04/10 06:52:47 cbarratt Exp $
 #
 # Italian i18n file
 #
@@ -262,7 +262,7 @@ EOF
 
 $Lang{BackupPC_Archive2_parity} = <<EOF;
 <tr>
-    <td>Numero di file di parit&agrave;</td>
+    <td>ENG Percentage of Parity Data (0 = disable, 5 = typical)</td>
     <td><input type="numeric" value="\$ArchivePar" name="par"></td>
 </tr>
 EOF
