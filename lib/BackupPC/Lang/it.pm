@@ -1,6 +1,6 @@
 #!/bin/perl
 #
-# $Id: it.pm,v 1.8 2004/06/12 18:18:42 cbarratt Exp $
+# $Id: it.pm,v 1.9 2004/06/20 02:21:02 cbarratt Exp $
 #
 # Italian i18n file
 #
@@ -30,7 +30,7 @@ $Lang{Admin_Options_Page} = <<EOF;
 <br>
 \${h2("Controllo server")}
 <form action="\$MyURL" method="get">
-<table>
+<table class="tableStnd">
 <!--<tr><td>Arresta il server:<td><input type="submit" name="action" value="Stop">-->
   <tr><td>Ricarica la configurazione del server:<td><input type="submit" name="action" value="Reload">
 </table>
