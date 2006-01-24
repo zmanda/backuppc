@@ -1,6 +1,6 @@
 #!/bin/perl
 #
-# $Id: it.pm,v 1.11 2005/09/11 01:37:02 cbarratt Exp $
+# $Id: it.pm,v 1.12 2006/01/24 07:10:57 cbarratt Exp $
 #
 # Italian i18n file
 #
