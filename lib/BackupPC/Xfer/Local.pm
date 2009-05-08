@@ -537,7 +537,7 @@ sub restoreSymlink
     #print STDERR "\$t->restoreSymlink($linkAttrib->{relPath})\n";
 
     ( my $dst = "$targetDir/$linkAttrib->{relPath}" ) =~ s{//+}{/}g;
-    my ( $data, $prefixMatches, $targetFields );
+    my ($data);
 
     my $l = BackupPC::FileZIO->open( $linkAttrib->{fullPath},
         0, $linkAttrib->{compress} );
@@ -553,21 +553,28 @@ sub restoreSymlink
     while ( $l->read( \$data, $BufSize ) > 0 ) {
         $symTarget .= $data;
     }
+    #print STDERR "unchanged symTarget=$symTarget\n";
 
-    if ( !defined $t->{targetDirPrefixes} ) {
+    if ( !defined $t->{srcDirPrefixes} ) {
 
-        ( my $fieldSplit = $targetDir ) =~ s{^/+}{};
-        my $targetFields = [ split '/', $fieldSplit ];
+        my $srcDir = $t->{bkupSrcShare};
+        ( my $fieldSplit = $srcDir ) =~ s{^/+}{};
+        my $targetFields = [ split /[^\\]\//, $fieldSplit ];
+        my @subDirs = ();
+
         do {
-            push @$prefixMatches, join( '/', @$targetFields );
+            push @subDirs, join( '/', @$targetFields );
         } while ( shift @$targetFields );
-        $t->{targetDirPrefixes} = map { qr{^/?$_/?/}; } @$prefixMatches;
+        $t->{srcDirPrefixes} = [ map { qr{^(/?)$_(/?)}; } @subDirs ];
+
+        #print STDERR Dumper( $t->{srcDirPrefixes} );
     }
-    $prefixMatches = $t->{targetDirPrefixes};
+    my $prefixMatches = $t->{srcDirPrefixes};
 
     foreach my $prefix (@$prefixMatches) {
-        last if $symTarget =~ s/$prefix/$targetDir/;
+        last if $symTarget =~ s/$prefix/$1$targetDir$2/;
     }
+    #print STDERR "symTarget=$symTarget\n";
     symlink $symTarget, $dst;
 
     $t->logFileAction( "restore", $linkAttrib->{relPath}, $linkAttrib );
