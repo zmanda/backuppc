@@ -567,6 +567,7 @@ sub restoreSymlink
         } while ( shift @$targetFields );
         $t->{srcDirPrefixes} = [ map { qr{^(/?)$_(/?)}; } @subDirs ];
 
+        #print STDERR "\$srcDir=$srcDir";
         #print STDERR Dumper( $t->{srcDirPrefixes} );
     }
     my $prefixMatches = $t->{srcDirPrefixes};
