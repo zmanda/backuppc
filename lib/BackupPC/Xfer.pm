@@ -44,6 +44,7 @@ use Encode qw/from_to encode/;
 
 use BackupPC::Xfer::Archive;
 use BackupPC::Xfer::Ftp;
+use BackupPC::Xfer::Local;
 use BackupPC::Xfer::Protocol;
 use BackupPC::Xfer::Rsync;
 use BackupPC::Xfer::Smb;
@@ -68,6 +69,12 @@ sub create
 
         $xfer = BackupPC::Xfer::Ftp->new( $bpc, $args );
         $errStr = BackupPC::Xfer::Ftp::errStr() if ( !defined($xfer) );
+        return $xfer;
+
+    } elsif ( $protocol eq 'local' ) {
+
+        $xfer = BackupPC::Xfer::Local->new( $bpc, $args );
+        $errStr = BackupPC::Xfer::Local::errStr() if ( !defined($xfer) );
         return $xfer;
 
     } elsif ( $protocol eq 'rsync' || $protocol eq 'rsyncd' ) {
@@ -117,6 +124,9 @@ sub getShareNames
     } elsif ( $conf->{XferMethod} eq "ftp" ) {
         $ShareNames = $conf->{FtpShareName};
 
+    } elsif ( $conf->{XferMethod} eq "local" ) {
+        $ShareNames = $conf->{LocalShareName};
+
     } elsif ( $conf->{XferMethod} eq "rsync" || $conf->{XferMethod} eq "rsyncd" ) {
         $ShareNames = $conf->{RsyncShareName};
 
@@ -140,10 +150,9 @@ sub getRestoreCmd
     my($conf) = @_;
     my $restoreCmd;
 
-    if ( $conf->{XferMethod} eq "archive" ) {
-        $restoreCmd = undef;
-
-    } elsif ( $conf->{XferMethod} eq "ftp" ) {
+    if ( $conf->{XferMethod} eq "archive"
+      || $conf->{XferMethod} eq "ftp"
+      || $conf->{XferMethod} eq "local" ) {
         $restoreCmd = undef;
 
     } elsif ( $conf->{XferMethod} eq "rsync"
@@ -169,7 +178,7 @@ sub getRestoreCmd
 
 sub restoreEnabled
 {
-    my($conf) = @_;
+    my $conf = shift @_;
     my $restoreCmd;
 
     if ( $conf->{XferMethod} eq "archive" ) {
@@ -177,6 +186,9 @@ sub restoreEnabled
 
     } elsif ( $conf->{XferMethod} eq "ftp" ) {
         return !!( $conf->{FtpRestoreEnabled} );
+
+    } elsif ( $conf->{XferMethod} eq "local" ) {
+        return !!( $conf->{LocalRestoreEnabled} );
 
     } elsif ( $conf->{XferMethod} eq "rsync"
            || $conf->{XferMethod} eq "rsyncd"

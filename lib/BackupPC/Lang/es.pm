@@ -35,7 +35,7 @@ $Lang{Admin_Options_Page} = <<EOF;
 </form>
 <!--
 \${h2("Server Configuration")}
-<ul> 
+<ul>
   <li><i>Espacio para otras opciones... e.j.,</i>
   <li>Editar configuración del servidor
 </ul>
@@ -434,7 +434,7 @@ $Lang{Recent_Email_Summary} = <<EOF;
 \$str
 </table>
 EOF
- 
+
 
 # ------------------------------
 $Lang{Browse_backup__num_for__host} = "BackupPC: Hojear copia de seguridad \$num de \$host";
@@ -797,11 +797,11 @@ $Lang{Backup_browse_for__host} = <<EOF;
         }
       }
     }
-    
+
     function toggleThis(checkbox)
     {
        var cb = eval("document.form1."+checkbox);
-       cb.checked = !cb.checked;	
+       cb.checked = !cb.checked;
     }
 
 //-->
@@ -966,11 +966,11 @@ $Lang{Email_Summary} = "BackupPC: Resumen de Correos";
 #  !! ERROR messages !!
 # -----------------------------------
 $Lang{BackupPC__Lib__new_failed__check_apache_error_log} = "BackupPC::Lib->nuevo ha fallado: revise el error_log de apache\n";
-$Lang{Wrong_user__my_userid_is___} =  
+$Lang{Wrong_user__my_userid_is___} =
               "Usuario erróneo: mi userid es \$>, en lugar de \$uid"
             . "(\$Conf{BackupPCUser})\n";
 # $Lang{Only_privileged_users_can_view_PC_summaries} = "Sólo los usuarios autorizados pueden ver los resúmenes de PC´s.";
-$Lang{Only_privileged_users_can_stop_or_start_backups} = 
+$Lang{Only_privileged_users_can_stop_or_start_backups} =
                   "Sólo los usuarios autorizados pueden comenzar a detener las copias"
 		. " \${EscHTML(\$host)}.";
 $Lang{Invalid_number__num} = "Número no válido \$num";
@@ -1239,8 +1239,8 @@ $Lang{Reason_no_ping} = "no hay ping";
 $Lang{Reason_backup_canceled_by_user} = "copia cancelada por el usuario";
 $Lang{Reason_restore_canceled_by_user} = "restauración cancelada por el usuario";
 $Lang{Reason_archive_canceled_by_user} = "archivado cancelado por el usuario";
-$Lang{Disabled_OnlyManualBackups}  = "ENG auto disabled";  
-$Lang{Disabled_AllBackupsDisabled} = "ENG disabled";                  
+$Lang{Disabled_OnlyManualBackups}  = "ENG auto disabled";
+$Lang{Disabled_AllBackupsDisabled} = "ENG disabled";
 
 # ---------
 # Email messages
@@ -1325,7 +1325,7 @@ Se le recomienda hacer copia de seguridad de los archivos de Outlook cuando esté
 conectado a la red cerrando Outlook y el resto de aplicaciones y utilizando su
 navegador de internet. Haga click en este vínculo:
 
-    $CgiURL?host=$host               
+    $CgiURL?host=$host
 
 Seleccione "Comenzar copia de seguridad incremental" dos veces para comenzar
 una neva copia de seguridad incremental.
@@ -1386,6 +1386,7 @@ $Lang{CfgEdit_Title_User_Config_Editing} = "User Config Editing";
 $Lang{CfgEdit_Title_Xfer} = "Xfer";
 $Lang{CfgEdit_Title_Xfer_Settings} = "Xfer Settings";
 $Lang{CfgEdit_Title_Ftp_Settings} = "FTP Settings";
+$Lang{CfgEdit_Title_Local_Settings} = "Local Settings";
 $Lang{CfgEdit_Title_Smb_Settings} = "Smb Settings";
 $Lang{CfgEdit_Title_Tar_Settings} = "Tar Settings";
 $Lang{CfgEdit_Title_Rsync_Settings} = "Rsync Settings";
@@ -1470,5 +1471,5 @@ $Lang{CfgEdit_Log_Host_Change}
             = "\$User host \$host changed \$key from \$valueOld to \$valueNew\n";
 $Lang{CfgEdit_Log_Host_Add}
             = "\$User added host \$host: \$value\n";
-  
+
 #end of lang_en.pm

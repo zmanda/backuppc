@@ -195,7 +195,7 @@ use vars qw(%ConfigMeta);
     ######################################################################
     XferMethod => {
 	    type   => "select",
-	    values => [qw(archive ftp rsync rsyncd smb tar)],
+	    values => [qw(archive ftp local rsync rsyncd smb tar)],
     },
     XferLogLevel	=> "integer",
 
@@ -283,6 +283,15 @@ use vars qw(%ConfigMeta);
     FtpTimeout          => "integer",
     FtpFollowSymlinks   => "boolean",
     FtpRestoreEnabled   => "boolean",
+
+    ######################################################################
+    # Local Configuration
+    ######################################################################
+    LocalShareName      => {
+            type  => "list",
+            child => "string",
+    },
+    LocalRestoreEnabled => "boolean",
 
     ######################################################################
     # Archive Configuration
@@ -380,8 +389,8 @@ use vars qw(%ConfigMeta);
 		Reason_no_ping                 => "string",
 		Reason_backup_canceled_by_user => "string",
 		Status_backup_in_progress      => "string",
-                Disabled_OnlyManualBackups     => "string", 
-                Disabled_AllBackupsDisabled    => "string",  
+                Disabled_OnlyManualBackups     => "string",
+                Disabled_AllBackupsDisabled    => "string",
 	    },
     },
     CgiHeaders	 	=> "bigstring",

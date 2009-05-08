@@ -184,6 +184,14 @@ our %ConfigMenu = (
             {name => "SmbSharePasswd",
                 visible => sub { return $_[0]->{XferMethod} eq "smb"; } },
 
+            ### Local
+            {text    => "CfgEdit_Title_Local_Settings",
+             visible => sub { return $_[0]->{XferMethod} eq "local"; } },
+            {name    => "LocalShareName",
+             visible => sub { return $_[0]->{XferMethod} eq "local"; } },
+            {name    => "LocalRestoreEnabled",
+             visible => sub { return $_[0]->{XferMethod} eq "local"; } },
+
             ### Tar Settings
             {text => "CfgEdit_Title_Tar_Settings",
                 visible => sub { return $_[0]->{XferMethod} eq "tar"; } },
@@ -341,7 +349,7 @@ our %ConfigMenu = (
 	    {name => "FixedIPNetBiosNameCheck"},
 	    {name => "PingCmd"},
 	    {name => "PingMaxMsec"},
-	    
+
 	    {text => "CfgEdit_Title_Other"},
 	    {name => "ClientTimeout"},
 	    {name => "MaxOldPerPCLogFiles"},
@@ -514,7 +522,7 @@ EOF
 
     my $saveStyle = "";
     my $saveColor = "#ff0000";
-    
+
     if ( $In{modified} && $In{saveAction} ne "Save" && !%$errors ) {
         $saveStyle = "style=\"color:$saveColor\"";
     } else {

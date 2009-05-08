@@ -116,6 +116,7 @@ my @PerlSrc = qw(
     lib/BackupPC/Xfer.pm
     lib/BackupPC/Xfer/Archive.pm
     lib/BackupPC/Xfer/Ftp.pm
+    lib/BackupPC/Xfer/Local.pm
     lib/BackupPC/Xfer/Protocol.pm
     lib/BackupPC/Xfer/Rsync.pm
     lib/BackupPC/Xfer/RsyncDigest.pm

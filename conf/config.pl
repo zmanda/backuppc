@@ -420,7 +420,7 @@ $Conf{IncrPeriod} = 0.97;
 #
 #    full 0 19 weeks old   \
 #    full 1 15 weeks old    >---  3 backups at 4 * $Conf{FullPeriod}
-#    full 2 11 weeks old   / 
+#    full 2 11 weeks old   /
 #    full 3  7 weeks old   \____  2 backups at 2 * $Conf{FullPeriod}
 #    full 4  5 weeks old   /
 #    full 5  3 weeks old   \
@@ -434,7 +434,7 @@ $Conf{IncrPeriod} = 0.97;
 #
 #    full 0 16 weeks old   \
 #    full 1 12 weeks old    >---  3 backups at 4 * $Conf{FullPeriod}
-#    full 2  8 weeks old   / 
+#    full 2  8 weeks old   /
 #    full 3  6 weeks old   \____  2 backups at 2 * $Conf{FullPeriod}
 #    full 4  4 weeks old   /
 #    full 5  3 weeks old   \
@@ -518,7 +518,7 @@ $Conf{IncrAgeMax}     = 30;
 #       $Conf{IncrKeepCnt} = 6;
 #       $Conf{IncrLevels}  = [1, 2, 3, 4, 5, 6];
 #
-# there will be up to 11 incrementals in this case: 
+# there will be up to 11 incrementals in this case:
 #
 #       backup #0  (full, level 0, oldest)
 #       backup #1  (incr, level 1)
@@ -855,7 +855,7 @@ $Conf{BackupZeroFilesIsFatal} = 1;
 #   - 'archive': host is a special archive host.  Backups are not done.
 #                An archive host is used to archive other host's backups
 #                to permanent media, such as tape, CDR or DVD.
-#               
+#
 #
 $Conf{XferMethod} = 'smb';
 
@@ -1266,12 +1266,12 @@ $Conf{RsyncdAuthRequired} = 1;
 # it to 1 (ie: 100%) means all files will be checked, but that is
 # not a desirable setting since you are better off simply turning
 # caching off (ie: remove the --checksum-seed option).
-#   
+#
 # The default of 0.01 means 1% (on average) of the files during a full
 # backup will have their cached checksum re-checked.
-#   
+#
 # This setting has no effect unless checksum caching is turned on.
-#   
+#
 $Conf{RsyncCsumCacheVerifyProb} = 0.01;
 
 #
@@ -1476,6 +1476,33 @@ $Conf{FtpFollowSymlinks} = 0;
 $Conf{FtpRestoreEnabled} = 0;
 
 ###########################################################################
+# Local Configuration
+# (can be overwritten in the per-PC log file)
+###########################################################################
+
+
+#
+# Name of the host share that is backed up when using the Local xfer
+# protocol.  This can be a string or an array of strings if there are
+# multiple shares per host.  Examples:
+#
+#   $Conf{LocalShareName} = 'c';          # backup 'c' share
+#   $Conf{LocalShareName} = ['c', 'd'];   # backup 'c' and 'd' shares
+#
+# This setting only matters if $Conf{XferMethod} = 'local'.
+#
+$Conf{LocalShareName} = '';
+
+#
+# Direct restore capability for a Local host.
+#
+# When this is enabled, users may restore files to the server.
+#This
+# setting only matters if $Conf{XferMethod} = 'local'.
+#
+$Conf{LocalRestoreEnabled} = 1;
+
+###########################################################################
 # Archive Configuration
 # (can be overwritten in the per-PC log file)
 ###########################################################################
@@ -1517,10 +1544,10 @@ $Conf{ArchivePar} = 0;
 #
 # Archive Size Split
 #
-# Only for file archives. Splits the output into 
+# Only for file archives. Splits the output into
 # the specified size * 1,000,000.
 # e.g. to split into 650,000,000 bytes, specify 650 below.
-# 
+#
 # If the value is 0, or if $Conf{ArchiveDest} is an existing file or
 # device (e.g. a streaming tape drive), this feature is disabled.
 #
@@ -1908,9 +1935,9 @@ $Conf{EMailUserDestDomain} = '';
 #   To: $user$domain
 #   cc:
 #   Subject: $subj
-#   
+#
 #   Dear $userName,
-#   
+#
 #   This is a site-specific email message.
 #   EOF
 #
@@ -1936,9 +1963,9 @@ $Conf{EMailNotifyOldBackupDays} = 7.0;
 #   To: $user$domain
 #   cc:
 #   Subject: $subj
-#   
+#
 #   Dear $userName,
-#   
+#
 #   This is a site-specific email message.
 #   EOF
 #
@@ -1964,9 +1991,9 @@ $Conf{EMailNotifyOldOutlookDays} = 5.0;
 #   To: $user$domain
 #   cc:
 #   Subject: $subj
-#   
+#
 #   Dear $userName,
-#   
+#
 #   This is a site-specific email message.
 #   EOF
 #
@@ -2020,7 +2047,7 @@ $Conf{CgiAdminUsers}     = '';
 #
 $Conf{CgiURL} = undef;
 
-#   
+#
 # Language to use.  See lib/BackupPC/Lang for the list of supported
 # languages, which include English (en), French (fr), Spanish (es),
 # German (de), Italian (it), Dutch (nl), Polish (pl), Portuguese
@@ -2106,8 +2133,8 @@ $Conf{CgiStatusHilightColor} = {
     Reason_no_ping                 => '#ffff99',
     Reason_backup_canceled_by_user => '#ff9900',
     Status_backup_in_progress      => '#66cc99',
-    Disabled_OnlyManualBackups     => '#d1d1d1',   
-    Disabled_AllBackupsDisabled    => '#d1d1d1',          
+    Disabled_OnlyManualBackups     => '#d1d1d1',
+    Disabled_AllBackupsDisabled    => '#d1d1d1',
 };
 
 #

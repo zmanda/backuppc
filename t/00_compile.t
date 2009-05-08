@@ -88,6 +88,7 @@ my @libFiles = qw{
   ../lib/BackupPC/Xfer/Protocol.pm
   ../lib/BackupPC/Xfer/Smb.pm
   ../lib/BackupPC/Xfer/Tar.pm
+  ../lib/BackupPC/Xfer/Local.pm
   ../lib/BackupPC/Xfer/Rsync.pm
   ../lib/BackupPC/Xfer/RsyncDigest.pm
   ../lib/BackupPC/Xfer/RsyncFileIO.pm
